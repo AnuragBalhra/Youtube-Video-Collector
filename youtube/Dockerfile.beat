@@ -7,6 +7,5 @@ COPY requirements.txt /code/
 RUN python3 -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /code/
-ENTRYPOINT celery -A youtube.celery beat -l info  --without-gossip --without-mingle --without-heartbeat -Ofair --pool=solo
-# ENTRYPOINT celery -A youtube worker -l info --without-gossip --without-mingle --without-heartbeat -Ofair --pool=solo
-# CMD python cronjob.py
+ENTRYPOINT celery -A youtube.celery beat -l info  
+

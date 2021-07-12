@@ -18,7 +18,6 @@ class Video(models.Model):
     description = models.TextField(null=True, blank=True)
     channel_id = models.CharField(max_length=50)
     channel_title = models.CharField(max_length=100)
-    live_brodcast_content = models.CharField(max_length=50)
     published_at = models.DateTimeField()
     date_created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)

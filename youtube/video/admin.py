@@ -18,7 +18,7 @@ class ThumbnailInLine(admin.TabularInline):
 class VideoAdmin(admin.ModelAdmin):
     search_fields = ('video_id', 'title', 'description', 'channel_title')
     list_display = ('id', 'video_id', 'title', 'channel_title', 'published_at')
-    list_filter = ('channel_title', 'live_brodcast_content')
+    list_filter = ('channel_id', 'channel_title')
 
     inlines = [ThumbnailInLine]
 
