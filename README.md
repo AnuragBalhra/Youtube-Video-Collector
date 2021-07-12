@@ -23,7 +23,7 @@ or
 All the APIs are unauthenticated
 
 API to Get Paginated List of Videos -
-http://0.0.0.0:8000/youtube/video/all-videos/?start=0&entries=20
+http://0.0.0.0:8000/youtube/video/?page=1&per_page=20
 
 API To Search all videos for a given query -
 http://0.0.0.0:8000/youtube/video/search/?q={query_string}
