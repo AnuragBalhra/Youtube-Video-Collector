@@ -1,0 +1,38 @@
+version: '3'
+services:
+  django:
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./youtube:/code
+    build:
+      context: ./youtube
+      dockerfile: Dockerfile.django
+
+  redis:
+    ports:
+      - "6379:6379"
+    image: redis
+    restart: always
+
+  worker:
+    links:
+      - redis
+    depends_on:
+      - redis
+    volumes:
+      - ./youtube:/code
+    build:
+      context: ./youtube
+      dockerfile: Dockerfile.worker
+
+  beat:
+    links:
+      - redis
+    depends_on:
+      - redis
+    volumes:
+      - ./youtube:/code
+    build:
+      context: ./youtube
+      dockerfile: Dockerfile.beat
