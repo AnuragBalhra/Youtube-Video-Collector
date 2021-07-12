@@ -8,12 +8,15 @@ services:
     build:
       context: ./youtube
       dockerfile: Dockerfile.django
-
+    environment:
+      - YOUTUBE_API_KEYS
   redis:
     ports:
       - "6379:6379"
     image: redis
     restart: always
+    environment:
+      - YOUTUBE_API_KEYS
 
   worker:
     links:
@@ -25,6 +28,8 @@ services:
     build:
       context: ./youtube
       dockerfile: Dockerfile.worker
+    environment:
+      - YOUTUBE_API_KEYS
 
   beat:
     links:
@@ -36,3 +41,5 @@ services:
     build:
       context: ./youtube
       dockerfile: Dockerfile.beat
+    environment:
+      - YOUTUBE_API_KEYS

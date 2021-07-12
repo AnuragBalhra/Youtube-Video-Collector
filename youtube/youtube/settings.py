@@ -133,7 +133,7 @@ STATIC_URL = '/' + PATH_PREFIX + 'static/'
 # Configuration parameters for Celery Task Schedular
 BROKER_URL = "redis://redis:6379"
 BROKER_TRANSPORT = "redis"
-CELERY_RESULT_BACKEND = "redis"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
@@ -144,9 +144,6 @@ CELERY_IMPORTS = [
 
 
 # Configuration parameters for Async task designed for fetching Youtube Videos
-YOUTUBE_APIKEYS = [
-    "AIzaSyAY5nsDbH0moJEakTRxRWB058rdGL0jVbY",
-    "AIzaSyCeXPk-_TsLg55u7xqDnw3dLjykyFW6FXQ"
-]
+YOUTUBE_APIKEYS = [i for i in os.environ.get("YOUTUBE_API_KEYS").split(" ")] 
 ASYNC_TASK_TIME_INTERVAL = 120
 VIDEO_TAG = 'sport'
