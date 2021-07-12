@@ -15,16 +15,6 @@ Once you've added above env variable use the following command to bring up your 
 
 > docker-compose up
 
-## Logging
-
-Logs of all contianers or specific containers can be monitored using following command -
-
-> docker-compose logs
-
-or
-
-> docker-compose logs worker
-
 ## API
 
 All the APIs are unauthenticated
@@ -39,17 +29,17 @@ http://0.0.0.0:8000/youtube/video/search/?q={query_string}
 
 To access dashboard you need to first create a superuser
 
-Open a session in currently running container using following command
+Open a session in currently running django container using following command
 
-> docker exec -ti {docker container name} /bin/bash
+> docker exec -ti {django container name} /bin/bash
 
 In the created Docker session. Execute the following command
 
-> > python manage.py createsuperuser
+> python manage.py createsuperuser
 
 It would ask you to set username, email and password for superuser, using which you can access admin dashboard
 
-Admin Dashboard -
+Admin Dashboard Link - 
 
 > http://0.0.0.0:8000/youtube/admin/
 
@@ -58,6 +48,18 @@ Admin pages are authenticated and can be accessed by superuser credentials creat
 ## Backend Task
 
 This service executes a backend job periodically to asyncronously fetch videos from Youtube and update the database. This background task is implemented using celery for scheduling async tasks.
+
 Also, we could provide multiple API keys during configuration(see setup section above), so that if quota for any one API Key is exhausted, the async task automatically uses the next available key.
+
+## Logging
+
+Logs of all contianers or specific containers can be monitored using following command -
+
+> docker-compose logs
+
+or
+
+> docker-compose logs service
+
 
 
